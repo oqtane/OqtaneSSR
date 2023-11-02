@@ -58,6 +58,6 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 
 # Next Steps
 
-This project is a work in progress. The goal is simulate as many core concepts of Oqtane as possible to evaluate the challenges or gaps which may exist that would prevent Oqtane from supporting Blazor SSR.
+This project is a work in progress. The goal is to simulate as many core concepts of Oqtane as possible to evaluate the challenges or gaps which may exist in Blazor SSR for supporting a modular application framework like Oqtane.
 
 
