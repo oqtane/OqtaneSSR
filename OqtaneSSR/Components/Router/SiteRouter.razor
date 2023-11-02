@@ -1,0 +1,85 @@
+@using System.Diagnostics.CodeAnalysis
+@using System.Net
+@using OqtaneSSR.Components
+@using OqtaneSSR.Client.Models
+@using Microsoft.Extensions.Configuration
+
+@inject IConfiguration Configuration
+@inject NavigationManager NavigationManager
+@inject INavigationInterception NavigationInterception
+@inject IJSRuntime JSRuntime
+@implements IHandleAfterRender
+
+@DynamicComponent
+
+@code {
+    private List<Module> _modules;
+    private string _absoluteUri;
+    private bool _navigationInterceptionEnabled;
+    private PageState _pagestate;
+
+    [CascadingParameter]
+    PageState PageState { get; set; }
+
+    [Parameter]
+    public Action<PageState> OnStateChange { get; set; }
+
+    private RenderFragment DynamicComponent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _modules = Configuration.GetSection("Modules").Get<List<Module>>();
+
+        _absoluteUri = NavigationManager.Uri;
+        NavigationManager.LocationChanged += LocationChanged;
+
+        DynamicComponent = builder =>
+        {
+            if (PageState != null)
+            {
+                builder.OpenComponent(0, typeof(ThemeBuilder));
+                builder.CloseComponent();
+            }
+        };        
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= LocationChanged;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (PageState == null)
+        {
+            await Refresh();
+        }
+    }
+
+    private async void LocationChanged(object sender, LocationChangedEventArgs args)
+    {
+        _absoluteUri = args.Location;
+        await Refresh();
+    }
+
+    Task IHandleAfterRender.OnAfterRenderAsync()
+    {
+        if (!_navigationInterceptionEnabled)
+        {
+            _navigationInterceptionEnabled = true;
+            return NavigationInterception.EnableNavigationInterceptionAsync();
+        }
+        return Task.CompletedTask;
+    }
+
+    private async Task Refresh()
+    {
+        _pagestate = new PageState
+        {
+            PagePath = new Uri(_absoluteUri).AbsolutePath,
+            Modules = _modules
+        };
+
+        OnStateChange?.Invoke(_pagestate);
+    }
+}

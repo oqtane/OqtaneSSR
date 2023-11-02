@@ -1,0 +1,27 @@
+@using OqtaneSSR.Client.Models
+
+<small>(Module: @ModuleState.ModuleType)</small><br />
+<small>(Render Mode: @ModuleState.RenderMode)</small>
+
+<DynamicComponent Type="@_type" Parameters="@_parameters"></DynamicComponent>
+
+@code {
+	private Type _type { get; set; }
+	private IDictionary<string, object> _parameters { get; set; }
+
+	[CascadingParameter]
+	protected PageState PageState { get; set; }
+
+	[CascadingParameter]
+	private Module ModuleState { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		_type = Type.GetType("OqtaneSSR.Client.Components.DynamicRenderMode.DynamicRenderModeComponent, OqtaneSSR.Client");
+		_parameters = new Dictionary<string, object> 
+		{ 
+			{ "TypeName", ModuleState.ModuleType }, 
+			{ "RenderMode", ModuleState.RenderMode }
+		};
+	}
+}

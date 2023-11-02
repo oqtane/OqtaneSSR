@@ -1,0 +1,18 @@
+@using OqtaneSSR.Components.Router
+@using OqtaneSSR.Client.Models
+
+<div class="container">
+	<div class="row px-4">
+        <div class="container">
+            <ModuleInstance2 />
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    protected PageState PageState { get; set; }
+
+    [CascadingParameter]
+    protected Module ModuleState { get; set; }
+}

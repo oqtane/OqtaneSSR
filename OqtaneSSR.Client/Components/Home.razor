@@ -1,0 +1,24 @@
+﻿@using OqtaneSSR.Client.Models
+@inject HttpClient http
+
+@if (_text != null)
+{
+    <h1>@_text</h1>
+}
+
+This component demonstrates retrieving data from an API Controller
+
+@code {
+    [CascadingParameter]
+    protected PageState PageState { get; set; }
+
+    [CascadingParameter]
+    private Module ModuleState { get; set; }
+
+    private string _text = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _text = await http.GetStringAsync("api/Test/");
+    }
+}

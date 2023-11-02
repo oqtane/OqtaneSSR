@@ -1,0 +1,28 @@
+@using OqtaneSSR.Client.Models
+
+<small>(Pane: @Name)</small>
+
+@DynamicComponent
+
+@code {
+    [CascadingParameter]
+    protected PageState PageState { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    RenderFragment DynamicComponent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        DynamicComponent = builder =>
+        {
+            foreach (Module module in PageState.Modules.Where(item => item.PagePath == PageState.PagePath && item.PaneName == Name))
+            {
+                builder.OpenComponent(0, typeof(ContainerBuilder));
+                builder.AddAttribute(1, "ModuleState", module);
+                builder.CloseComponent();
+            }
+        };
+    }
+}

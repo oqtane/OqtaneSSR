@@ -1,0 +1,36 @@
+@using OqtaneSSR.Client.Models
+
+<small>(Module: @ModuleState.ModuleType)</small>
+<br /><small>(Render Mode: @ModuleState.RenderMode)</small>
+
+@if (ModuleState.RenderMode == "InteractiveServer")
+{
+	<DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveServer"></DynamicComponent>
+}
+@if (ModuleState.RenderMode == "InteractiveWebAssembly")
+{
+	<DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicComponent>
+}
+@if (ModuleState.RenderMode == "InteractiveAuto")
+{
+	<DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveAuto"></DynamicComponent>
+}
+@if (ModuleState.RenderMode == "Server")
+{
+	<DynamicComponent Type="@_type"></DynamicComponent>
+}
+
+@code {
+	private Type _type { get; set; }
+
+	[CascadingParameter]
+	protected PageState PageState { get; set; }
+
+	[CascadingParameter]
+	private Module ModuleState { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		_type = Type.GetType(ModuleState.ModuleType);
+	}
+}

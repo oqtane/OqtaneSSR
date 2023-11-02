@@ -1,0 +1,49 @@
+﻿@using OqtaneSSR.Client.Models
+@using OqtaneSSR.Components.Router
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <small>(Theme: @this.GetType().FullName)</small>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        <article class="content">
+                            <Pane Name="Default" />
+                        </article>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <article class="content">
+                        <Pane Name="Right" />
+                    </article>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <article class="content">
+                        <Pane Name="Footer" />
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+@code {
+    [CascadingParameter]
+    protected PageState PageState { get; set; }
+}
