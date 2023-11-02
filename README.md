@@ -36,6 +36,8 @@ The appsettings.json (https://github.com/oqtane/OqtaneSSR/blob/main/OqtaneSSR/ap
 ]
 ```
 
+![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/ff3c35a9-236e-48f8-bff1-5aa9174b39ba)
+
 Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes - Default, Footer, and Right. There are 2 Containers - however Container2 currently throws a run-time error. There are 3 Modules - Home (which loads content from an API endpoint), Counter (which demonstrates interactivity), and Weather (which demonstrates StreamRendering). There are 4 RenderModes - InteractiveServer, InteractiveWebAssembly, InteractiveAuto, and Server.
 
 # Differences from Default Blazor Web Template
