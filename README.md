@@ -50,7 +50,6 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - Uses DynamicComponent and RenderFragment to construct the UI dynamically
 - Accesses HttpContext in App.razor
 - Home component utilizes a Service interface with 2 implementations managed by dependency injection - when using InteractiveWebAssembly/InteractiveAuto render mode it uses HttpClient/API Controller, and when using InteractiveServer/Server render mode it uses a direct server access
-- loads content from an API Controller using HttpClient (which is configured for both InteractiveServer and InteractiveWebAssembly scenarios)
 
 # Known Problems
 
