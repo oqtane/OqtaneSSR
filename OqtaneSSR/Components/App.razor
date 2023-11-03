@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http.Extensions;
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,3 +20,19 @@
 </body>
 
 </html>
+
+@code {
+    //  this CascadingParameter is required in order to access HttpContent
+    [CascadingParameter] 
+    HttpContext Context { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var ip = Context.Connection.RemoteIpAddress?.ToString();
+        var url = Context.Request.GetEncodedUrl();
+        var user = Context.User;
+        var cookies = Context.Request.Cookies;
+        var headers = Context.Request.Headers;
+    }
+}
+ 
