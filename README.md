@@ -53,7 +53,7 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 
 # Known Problems
 
-- if you specify the same interactive rendermode for all modules (ie. InteractiveServer) the pages will not be rendered properly. This seems to be an issue with Blazor in RC2
+- if you specify the same interactive rendermode for all modules (ie. InteractiveServer) the pages will not be rendered properly. This seems to be an issue with Blazor in RC2 (see #1)
 - if you use Container2 it is using instance-based @rendermode attributes ie. <DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveServer"></DynamicComponent> which is supposed to work but throws a run-time error related to serialization. This appears to be an issue in RC2. The reason why the other Container works is because it takes a different approach and uses a custom DynamicRenderModeComponent which wraps an InteractiveServer, InteractiveWebAssembly, and InteractiveAuto component which internally use @attribute [RenderModeName]
 - PageState and ModuleState do not flow from the Router to the Module components - they are null. This is because they are implemented using CascadingParameters which cannot cross the boundary from non-interactive to interactive in Blazor SSR. There is an alternate solution (builder.Services.AddCascadingValue) which is partially implemented but not fully working.
 
