@@ -48,8 +48,9 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - The SiteRouter is implemented in the Server project and uses Server rendering
 - The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> containers -> modules)
 - Uses DynamicComponent and RenderFragment to construct the UI dynamically
-- Home compoonent loads content from an API Controller using HttpClient (which is configured for both InteractiveServer and InteractiveWebAssembly scenarios)
 - Accesses HttpContext in App.razor
+- Home component utilizes a Service interface with 2 implementations managed by dependency injection - when using InteractiveWebAssembly/InteractiveAuto render mode it uses HttpClient/API Controller, and when using InteractiveServer/Server render mode it uses a direct server access
+- loads content from an API Controller using HttpClient (which is configured for both InteractiveServer and InteractiveWebAssembly scenarios)
 
 # Known Problems
 
