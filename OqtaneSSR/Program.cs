@@ -3,8 +3,11 @@ using OqtaneSSR.Components;
 using OqtaneSSR.Extensions;
 using Microsoft.AspNetCore.Components;
 using OqtaneSSR.Client.Models;
+using OqtaneSSR.Client.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ITextService, OqtaneSSR.Services.TextService>();
 
 // Server Side Blazor doesn't register HttpClient by default
 if (!builder.Services.Any(x => x.ServiceType == typeof(HttpClient)))

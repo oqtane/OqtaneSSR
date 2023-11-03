@@ -1,5 +1,6 @@
 ﻿@using OqtaneSSR.Client.Models
-@inject HttpClient http
+@using OqtaneSSR.Client.Services
+@inject ITextService TextService
 
 @if (_text != null)
 {
@@ -19,6 +20,6 @@ This component demonstrates retrieving data from an API Controller
 
     protected override async Task OnInitializedAsync()
     {
-        _text = await http.GetStringAsync("api/Test/");
+        _text = await TextService.GetTextAsync();
     }
 }
