@@ -48,13 +48,13 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - The SiteRouter is implemented in the Server project and uses Server rendering
 - The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> containers -> modules)
 - Uses DynamicComponent and RenderFragment to construct the UI dynamically
-- Home compoonent loads content from an API Controller using HttpClient (which is configured for both InteractiveServer and InteractiveWebAssembly scenarios)
 - Accesses HttpContext in App.razor
+- Home component utilizes a Service interface with 2 implementations managed by dependency injection - Client implementation uses HttpClient/API Controller when running on InteractiveWebAssembly/InteractiveAuto render mode, and Server implementation uses direct server access when running on InteractiveServer/Server render mode
 
 # Known Problems
 
 - if you specify the same interactive rendermode for all modules (ie. InteractiveServer) the pages will not be rendered properly. This seems to be an issue with Blazor in RC2 (see https://github.com/oqtane/OqtaneSSR/issues/1)
-- if you use Container2 it is using instance-based @rendermode attributes ie. <DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveServer"></DynamicComponent> which is supposed to work but throws a run-time error related to serialization. This appears to be an issue in RC2. The reason why the other Container works is because it takes a different approach and uses a custom DynamicRenderModeComponent which wraps an InteractiveServer, InteractiveWebAssembly, and InteractiveAuto component which internally use @attribute [RenderModeName]
+- if you use Container2 it is using instance-based @rendermode attributes ie. <DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveServer"></DynamicComponent> which throws a run-time error related to serialization. This appears to be an issue in RC2. The reason why the other Container works is because it takes a different approach and uses a custom DynamicRenderModeComponent which wraps an InteractiveServer, InteractiveWebAssembly, and InteractiveAuto component which internally use @attribute [RenderModeName]
 - PageState and ModuleState do not flow from the Router to the Module components - they are null. This is because they are implemented using CascadingParameters which cannot cross the boundary from non-interactive to interactive in Blazor SSR. There is an alternate solution (builder.Services.AddCascadingValue) which is partially implemented but not fully working. (see https://github.com/dotnet/aspnetcore/issues/49104)
 
 # Next Steps
