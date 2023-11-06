@@ -1,7 +1,8 @@
 @using OqtaneSSR.Client.Models
 
 <div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
-	<div style="text-align: center;"><small>(Module: @ModuleState.ModuleType - Render Mode: @ModuleState.RenderMode)</small></div>
+	<div style="text-align: center;"><small>(Module: @ModuleState.ModuleType)</small></div>
+	<div style="text-align: center;"><small>(Render Mode: @ModuleState.RenderMode)</small></div>
 	<DynamicComponent Type="@_type" Parameters="@_parameters"></DynamicComponent>
 </div>
 
