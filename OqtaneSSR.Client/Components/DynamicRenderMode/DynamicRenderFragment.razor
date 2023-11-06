@@ -1,0 +1,25 @@
+﻿@using OqtaneSSR.Client.Models
+
+@DynamicComponent
+
+@code {
+    [CascadingParameter]
+    protected PageState PageState { get; set; }
+
+    [CascadingParameter]
+    private Module ModuleState { get; set; }
+
+    [Parameter]
+    public string TypeName { get; set; }
+
+    RenderFragment DynamicComponent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        DynamicComponent = builder =>
+        {
+            builder.OpenComponent(0, Type.GetType(TypeName));
+            builder.CloseComponent();
+        };
+    }
+}

@@ -1,0 +1,31 @@
+@using OqtaneSSR.Client.Models
+@using OqtaneSSR.Client.Components.DynamicRenderMode
+
+<div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
+	<div style="text-align: center;"><small>(Module: @ModuleState.ModuleType)</small></div>
+	<div style="text-align: center;"><small>(Render Mode: @ModuleState.RenderMode)</small></div>
+	@if (ModuleState.RenderMode == "InteractiveServer")
+	{
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" @rendermode="RenderMode.InteractiveServer"></DynamicRenderFragment>
+	}
+	@if (ModuleState.RenderMode == "InteractiveWebAssembly")
+	{
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicRenderFragment>
+	}
+	@if (ModuleState.RenderMode == "InteractiveAuto")
+	{
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" @rendermode="RenderMode.InteractiveAuto"></DynamicRenderFragment>
+	}
+	@if (ModuleState.RenderMode == "Server")
+	{
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType"></DynamicRenderFragment>
+	}
+</div>
+
+@code {
+	[CascadingParameter]
+	protected PageState PageState { get; set; }
+
+	[CascadingParameter]
+	private Module ModuleState { get; set; }
+}

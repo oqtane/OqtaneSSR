@@ -1,13 +1,13 @@
 @using OqtaneSSR.Client.Models
+@using OqtaneSSR.Client.Components.DynamicRenderMode
 
 <div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
 	<div style="text-align: center;"><small>(Module: @ModuleState.ModuleType)</small></div>
 	<div style="text-align: center;"><small>(Render Mode: @ModuleState.RenderMode)</small></div>
-	<DynamicComponent Type="@_type" Parameters="@_parameters"></DynamicComponent>
+	<DynamicComponent Type="@typeof(DynamicComponentAttribute)" Parameters="@_parameters"></DynamicComponent>
 </div>
 
 @code {
-	private Type _type { get; set; }
 	private IDictionary<string, object> _parameters { get; set; }
 
 	[CascadingParameter]
@@ -18,10 +18,9 @@
 
 	protected override void OnParametersSet()
 	{
-		_type = Type.GetType("OqtaneSSR.Client.Components.DynamicRenderMode.DynamicRenderModeComponent, OqtaneSSR.Client");
-		_parameters = new Dictionary<string, object> 
-		{ 
-			{ "TypeName", ModuleState.ModuleType }, 
+		_parameters = new Dictionary<string, object>
+		{
+			{ "TypeName", ModuleState.ModuleType },
 			{ "RenderMode", ModuleState.RenderMode }
 		};
 	}
