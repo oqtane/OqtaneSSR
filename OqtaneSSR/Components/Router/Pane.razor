@@ -1,8 +1,9 @@
 @using OqtaneSSR.Client.Models
 
-<small>(Pane: @Name)</small>
-
-@DynamicComponent
+<div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
+    <div style="text-align: center;"><small>(Pane: @Name)</small></div>
+    @DynamicComponent
+</div>
 
 @code {
     [CascadingParameter]

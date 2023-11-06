@@ -1,10 +1,11 @@
 @using OqtaneSSR.Client.Models
 
-<br /><small>(Container: @ModuleState.ContainerType)</small>
-
-<CascadingValue Value="@ModuleState">
-	<DynamicComponent Type="@Type.GetType(ModuleState.ContainerType)"></DynamicComponent>
-</CascadingValue>
+<div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
+    <div style="text-align: center;"><small>(Container: @ModuleState.ContainerType)</small></div>
+    <CascadingValue Value="@ModuleState">
+        <DynamicComponent Type="@Type.GetType(ModuleState.ContainerType)"></DynamicComponent>
+    </CascadingValue>
+</div>
     
 @code {
     [CascadingParameter]
