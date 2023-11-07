@@ -11,7 +11,7 @@ The appsettings.json (https://github.com/oqtane/OqtaneSSR/blob/main/OqtaneSSR/ap
     "PageName": "Home",
     "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
     "PaneName": "Default",
-    "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
+    "ContainerType": "OqtaneSSR.Components.Containers.Container1, OqtaneSSR",
     "ModuleType": "OqtaneSSR.Client.Components.Home, OqtaneSSR.Client",
     "RenderMode": "InteractiveServer"
   },
@@ -20,7 +20,7 @@ The appsettings.json (https://github.com/oqtane/OqtaneSSR/blob/main/OqtaneSSR/ap
     "PageName": "Counter",
     "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
     "PaneName": "Default",
-    "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
+    "ContainerType": "OqtaneSSR.Components.Containers.Container1, OqtaneSSR",
     "ModuleType": "OqtaneSSR.Client.Components.Counter, OqtaneSSR.Client",
     "RenderMode": "InteractiveWebAssembly"
   },
@@ -29,7 +29,7 @@ The appsettings.json (https://github.com/oqtane/OqtaneSSR/blob/main/OqtaneSSR/ap
     "PageName": "Weather",
     "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
     "PaneName": "Default",
-    "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
+    "ContainerType": "OqtaneSSR.Components.Containers.Container1, OqtaneSSR",
     "ModuleType": "OqtaneSSR.Client.Components.Weather, OqtaneSSR.Client",
     "RenderMode": "Server"
   }
@@ -38,7 +38,7 @@ The appsettings.json (https://github.com/oqtane/OqtaneSSR/blob/main/OqtaneSSR/ap
 
 ![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/9b24568b-4d64-40d3-98fa-122dfb37c3b6)
 
-Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes - Default, Footer, and Right. There are 2 Containers - however Container2 currently throws a run-time error (see Known Issues below). There are 3 Modules - Home (which loads content from an API endpoint), Counter (which demonstrates interactivity), and Weather (which demonstrates StreamRendering). There are 4 RenderModes - InteractiveServer, InteractiveWebAssembly, InteractiveAuto, and Server.
+Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes - Default, Footer, and Right. There are 3 Containers - Container1, Container2, and Container3 (however Container2 currently throws a run-time error - see Known Issues below). There are 3 Modules - Home (which loads content from an API endpoint), Counter (which demonstrates interactivity), and Weather (which demonstrates StreamRendering). There are 4 RenderModes - InteractiveServer, InteractiveWebAssembly, InteractiveAuto, and Server.
 
 # Differences from Default Blazor Web Template
 
@@ -46,15 +46,15 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - Uses a fallback route mapped to the App root component
 - Uses a custom SiteRouter rather than the default Blazor router (which simply maps the current Url path to some Module metadata)
 - The SiteRouter is implemented in the Server project and uses Server rendering
-- The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> containers -> modules)
+- The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> panes -> containers -> modules)
 - Uses DynamicComponent and RenderFragment to construct the UI dynamically
 - Accesses HttpContext in App.razor
 - Home component utilizes a Service interface with 2 implementations managed by dependency injection - Client implementation uses HttpClient/API Controller when running on InteractiveWebAssembly/InteractiveAuto render mode, and Server implementation uses direct server access when running on InteractiveServer/Server render mode
 
 # Known Problems
 
-- if you specify the same interactive rendermode for all modules (ie. InteractiveServer) the pages will not be rendered properly. This seems to be an issue with Blazor in RC2 (see https://github.com/oqtane/OqtaneSSR/issues/1)
-- if you use Container2 it internally references ModuleInstance2 which is using instance-based @rendermode attributes on a DynamicComponent ie. <DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveServer"></DynamicComponent> which throws a run-time error related to serialization. This appears to be an issue in RC2. The reason why the other Container works is because it takes a different approach and uses a custom DynamicRenderModeComponent which wraps an InteractiveServer, InteractiveWebAssembly, and InteractiveAuto component which internally use @attribute [RenderModeName] (see https://github.com/oqtane/OqtaneSSR/issues/2)
+- if you specify the same interactive rendermode for all modules (ie. InteractiveServer) when using Container1 the pages will not be rendered properly. This seems to be an issue with Blazor in RC2 (see https://github.com/oqtane/OqtaneSSR/issues/1)
+- if you use Container2 it internally references ModuleInstance2 which is using instance-based @rendermode attributes on a DynamicComponent ie. <DynamicComponent Type="@_type" @rendermode="RenderMode.InteractiveServer"></DynamicComponent> which throws a run-time error related to serialization. This appears to be an issue in RC2 (see https://github.com/oqtane/OqtaneSSR/issues/2)
 - PageState and ModuleState do not flow from the Router to the Module components - they are null. This is because they are implemented using CascadingParameters which cannot cross the boundary from non-interactive to interactive in Blazor SSR. There is an alternate solution (builder.Services.AddCascadingValue) which is partially implemented but not fully working. (see https://github.com/dotnet/aspnetcore/issues/49104)
 
 # Next Steps
