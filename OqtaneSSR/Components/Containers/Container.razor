@@ -4,16 +4,16 @@
 <div class="container">
 	<div class="row px-4">
         <div class="container">
-            <div style="text-align: center;"><small>(Using DynamicComponentAttribute)</small></div>
-            <ModuleInstance1 />
+            <ModuleInstance />
         </div>
     </div>
 </div>
+<br />
 
 @code {
     [CascadingParameter]
     protected PageState PageState { get; set; }
- 
+
     [CascadingParameter]
     protected Module ModuleState { get; set; }
 }
