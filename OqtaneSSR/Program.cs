@@ -24,13 +24,6 @@ if (!builder.Services.Any(x => x.ServiceType == typeof(HttpClient)))
     });
 }
 
-builder.Services.AddCascadingValue(sp =>
-{
-    var pageState = new PageState();
-    var source = new CascadingValueSource<PageState>(pageState, isFixed: false);
-    return source;
-});
-
 builder.Services.AddControllers();
 
 // Add services to the container.

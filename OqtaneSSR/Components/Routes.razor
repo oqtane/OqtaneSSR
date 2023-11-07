@@ -1,12 +1,9 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Components.Router
-@* @inject CascadingValueSource<PageState> CascadingPageState
- *@
+
 <CascadingValue Value="@PageState">
     <SiteRouter OnStateChange="@ChangeState" />
 </CascadingValue>
-
-@* <SiteRouter OnStateChange="@ChangeState" /> *@
 
 @code {
     private PageState PageState { get; set; }
@@ -15,7 +12,5 @@
     {
         PageState = pageState;
         StateHasChanged();
-
-        // CascadingPageState.NotifyChangedAsync(pageState);
     }
 }
