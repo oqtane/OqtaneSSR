@@ -7,6 +7,7 @@ namespace OqtaneSSR.Client.Models
         public string ThemeType { get; set; }
         public string PaneName { get; set; }
         public string ContainerType { get; set; }
+        public string ModuleTitle { get; set; }
         public string ModuleType { get; set; }
         public string RenderMode { get; set; }
     }
