@@ -46,7 +46,7 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - Uses a fallback route mapped to the App root component
 - Uses a custom SiteRouter rather than the default Blazor router (which simply maps the current Url path to some Module metadata)
 - The SiteRouter is implemented in the Server project and uses Server rendering
-- The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> containers -> modules)
+- The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> panes -> containers -> modules)
 - Uses DynamicComponent and RenderFragment to construct the UI dynamically
 - Accesses HttpContext in App.razor
 - Home component utilizes a Service interface with 2 implementations managed by dependency injection - Client implementation uses HttpClient/API Controller when running on InteractiveWebAssembly/InteractiveAuto render mode, and Server implementation uses direct server access when running on InteractiveServer/Server render mode
