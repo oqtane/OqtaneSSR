@@ -1,13 +1,17 @@
 ﻿@using OqtaneSSR.Client.Models
 
-@DynamicComponent
+<CascadingValue Value="@ModuleState">
+    @DynamicComponent
+</CascadingValue>
+
+<br /><br /><p>[CascadingParameter] ModuleState: @((ModuleState == null) ? "null" : "available")</p>
 
 @code {
     [CascadingParameter]
     protected PageState PageState { get; set; }
 
-    [CascadingParameter]
-    private Module ModuleState { get; set; }
+    [Parameter]
+    public Module ModuleState { get; set; }
 
     [Parameter]
     public string TypeName { get; set; }

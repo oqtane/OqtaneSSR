@@ -2,19 +2,21 @@
 @using OqtaneSSR.Client.Services
 @inject ITextService TextService
 
+<h1>Data</h1>
+
+<p>This component demonstrates retrieving data using ITextService</p>
+
 @if (_text != null)
 {
-    <h1>@_text</h1>
+    <strong>@_text</strong>
 }
-
-This component demonstrates retrieving data from an API Controller
 
 @code {
     [CascadingParameter]
     protected PageState PageState { get; set; }
 
     [CascadingParameter]
-    private Module ModuleState { get; set; }
+    protected Module ModuleState { get; set; }
 
     private string _text = null;
 

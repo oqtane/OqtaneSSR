@@ -6,19 +6,19 @@
 	<div style="text-align: center;"><small>(Render Mode: @ModuleState.RenderMode)</small></div>
 	@if (ModuleState.RenderMode == "InteractiveServer")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" @rendermode="RenderMode.InteractiveServer"></DynamicRenderFragment>
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" @rendermode="RenderMode.InteractiveServer"></DynamicRenderFragment>
 	}
 	@if (ModuleState.RenderMode == "InteractiveWebAssembly")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicRenderFragment>
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicRenderFragment>
 	}
 	@if (ModuleState.RenderMode == "InteractiveAuto")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" @rendermode="RenderMode.InteractiveAuto"></DynamicRenderFragment>
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" @rendermode="RenderMode.InteractiveAuto"></DynamicRenderFragment>
 	}
 	@if (ModuleState.RenderMode == "Server")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType"></DynamicRenderFragment>
+		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState"></DynamicRenderFragment>
 	}
 </div>
 
@@ -27,5 +27,5 @@
 	protected PageState PageState { get; set; }
 
 	[CascadingParameter]
-	private Module ModuleState { get; set; }
+	protected Module ModuleState { get; set; }
 }
