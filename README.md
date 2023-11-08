@@ -5,35 +5,38 @@ This is a POC for the new Blazor SSR capabilities in .NET 8. This project was or
 The appsettings.json (https://github.com/oqtane/OqtaneSSR/blob/main/OqtaneSSR/appsettings.json) contains a Modules property where you can define the pages and modules which should be rendered in your site. The initial configuration matches the standard appearance for the Blazor template, however you can experiment with the project by modifying the configuration (ie. adding/removing modules, changing module properties, etc...).
 
 ```
-"Modules": [
-  {
-    "PagePath": "/",
-    "PageName": "Home",
-    "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
-    "PaneName": "Default",
-    "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
-    "ModuleType": "OqtaneSSR.Client.Components.Home, OqtaneSSR.Client",
-    "RenderMode": "InteractiveServer"
-  },
-  {
-    "PagePath": "/counter",
-    "PageName": "Counter",
-    "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
-    "PaneName": "Default",
-    "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
-    "ModuleType": "OqtaneSSR.Client.Components.Counter, OqtaneSSR.Client",
-    "RenderMode": "InteractiveWebAssembly"
-  },
-  {
-    "PagePath": "/weather",
-    "PageName": "Weather",
-    "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
-    "PaneName": "Default",
-    "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
-    "ModuleType": "OqtaneSSR.Client.Components.Weather, OqtaneSSR.Client",
-    "RenderMode": "Server"
-  }
-]
+  "Modules": [
+    {
+      "PagePath": "/",
+      "PageName": "Home",
+      "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
+      "PaneName": "Default",
+      "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
+      "ModuleTitle":  "Data",
+      "ModuleType": "OqtaneSSR.Client.Components.Home, OqtaneSSR.Client",
+      "RenderMode": "InteractiveServer"
+    },
+    {
+      "PagePath": "/counter",
+      "PageName": "Counter",
+      "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
+      "PaneName": "Default",
+      "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
+      "ModuleTitle": "Counter",
+      "ModuleType": "OqtaneSSR.Client.Components.Counter, OqtaneSSR.Client",
+      "RenderMode": "InteractiveServer"
+    },
+    {
+      "PagePath": "/weather",
+      "PageName": "Weather",
+      "ThemeType": "OqtaneSSR.Components.Themes.MainLayout, OqtaneSSR",
+      "PaneName": "Default",
+      "ContainerType": "OqtaneSSR.Components.Containers.Container, OqtaneSSR",
+      "ModuleTitle": "Weather",
+      "ModuleType": "OqtaneSSR.Client.Components.Weather, OqtaneSSR.Client",
+      "RenderMode": "InteractiveServer"
+    }
+  ]
 ```
 
 ![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/9b24568b-4d64-40d3-98fa-122dfb37c3b6)
