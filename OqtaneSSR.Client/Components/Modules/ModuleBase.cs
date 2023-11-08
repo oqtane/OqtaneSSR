@@ -13,11 +13,11 @@ namespace OqtaneSSR.Client.Components.Modules
         protected Module ModuleState { get; set; }
 
         [Parameter]
-        public RenderModeBoundary RenderModeBoundary { get; set; }
+        public DynamicRenderMode DynamicRenderMode { get; set; }
 
         public void AddModuleMessage(string message, string type)
         {
-            RenderModeBoundary.AddModuleMessage(message, type);
+			DynamicRenderMode.AddModuleMessage(message, type);
         }
     }
 }

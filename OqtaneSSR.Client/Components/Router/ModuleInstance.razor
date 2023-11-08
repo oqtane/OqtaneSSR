@@ -8,23 +8,29 @@
 	
 	@if (ModuleState.RenderMode == "InteractiveServer")
 	{
-		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveServer"></RenderModeBoundary>
+		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveServer"></DynamicRenderMode>
 	}
 	@if (ModuleState.RenderMode == "InteractiveWebAssembly")
 	{
-		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveWebAssembly"></RenderModeBoundary>
+		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicRenderMode>
 	}
 	@if (ModuleState.RenderMode == "InteractiveAuto")
 	{
-		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveAuto"></RenderModeBoundary>
+		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveAuto"></DynamicRenderMode>
 	}
 	@if (ModuleState.RenderMode == "Server")
 	{
-		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState"></RenderModeBoundary>
+		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState"></DynamicRenderMode>
 	}
 </div>
 
 @code {
+	// this component is the render mode boundary between non-interactive and interactive rendering
+	// the DynamicRenderMode component is where interactivity can be enabled based on the @rendermode attribute
+	// container components contain a static reference to ModuleInstance so backward compatibility must be preserved
+	// interactive logic which formerly resided within ModuleInstance had to be moved to the interactive side of the render mode boundary
+	// this means that Modules which used to call ModuleInstance methods will need to use the ModuleBase abstractions
+
 	[CascadingParameter]
 	protected PageState PageState { get; set; }
 

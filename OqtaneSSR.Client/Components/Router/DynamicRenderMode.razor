@@ -33,7 +33,7 @@
         DynamicComponent = builder =>
         {
             builder.OpenComponent(0, Type.GetType(TypeName));
-            builder.AddAttribute(1, "RenderModeBoundary", this);
+            builder.AddAttribute(1, "DynamicRenderMode", this);
             builder.CloseComponent();
         };
     }
