@@ -1,8 +1,7 @@
-using OqtaneSSR.Client.Components;
+using OqtaneSSR.Client.Components.Router;
 using OqtaneSSR.Components;
 using OqtaneSSR.Extensions;
 using Microsoft.AspNetCore.Components;
-using OqtaneSSR.Client.Models;
 using OqtaneSSR.Client.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,7 +54,7 @@ app.MapControllers();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(Counter).Assembly);
+    .AddAdditionalAssemblies(typeof(SiteRouter).Assembly);
 
 app.MapFallback();
 

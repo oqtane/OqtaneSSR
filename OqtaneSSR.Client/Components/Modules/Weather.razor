@@ -1,5 +1,6 @@
-﻿@using OqtaneSSR.Client.Models
-@attribute [StreamRendering]
+﻿@attribute [StreamRendering]
+@using OqtaneSSR.Client.Models
+@inherits ModuleBase
 
 <p>This component demonstrates StreamRendering.</p>
 
@@ -33,12 +34,6 @@ else
 }
 
 @code {
-    [CascadingParameter]
-    protected PageState PageState { get; set; }
-
-    [CascadingParameter]
-    private Module ModuleState { get; set; }
-
     private WeatherForecast[] forecasts;
 
     protected override async Task OnInitializedAsync()

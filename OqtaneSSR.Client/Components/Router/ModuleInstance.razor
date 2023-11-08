@@ -4,21 +4,23 @@
 <div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
 	<div style="text-align: center;"><small>(Module: @ModuleState.ModuleType)</small></div>
 	<div style="text-align: center;"><small>(Render Mode: @ModuleState.RenderMode)</small></div>
+	<br />
+	
 	@if (ModuleState.RenderMode == "InteractiveServer")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveServer"></DynamicRenderFragment>
+		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveServer"></RenderModeBoundary>
 	}
 	@if (ModuleState.RenderMode == "InteractiveWebAssembly")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicRenderFragment>
+		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveWebAssembly"></RenderModeBoundary>
 	}
 	@if (ModuleState.RenderMode == "InteractiveAuto")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveAuto"></DynamicRenderFragment>
+		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveAuto"></RenderModeBoundary>
 	}
 	@if (ModuleState.RenderMode == "Server")
 	{
-		<DynamicRenderFragment TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState"></DynamicRenderFragment>
+		<RenderModeBoundary TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState"></RenderModeBoundary>
 	}
 </div>
 

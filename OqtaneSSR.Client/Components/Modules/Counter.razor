@@ -1,4 +1,5 @@
 ﻿@using OqtaneSSR.Client.Models
+@inherits ModuleBase
 
 <p>This component demonstrates interactivity.</p>
 
@@ -7,12 +8,6 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    [CascadingParameter]
-    protected PageState PageState { get; set; }
-
-    [CascadingParameter]
-    private Module ModuleState { get; set; }
-
     private int currentCount = 0;
 
     private void IncrementCount()

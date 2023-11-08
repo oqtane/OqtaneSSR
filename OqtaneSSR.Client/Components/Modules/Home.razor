@@ -1,8 +1,9 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Services
+@inherits ModuleBase
 @inject ITextService TextService
 
-<p>This component demonstrates retrieving data using ITextService</p>
+<p>This component demonstrates retrieving data using the ITextService</p>
 
 @if (_text != null)
 {
@@ -10,16 +11,12 @@
 }
 
 @code {
-    [CascadingParameter]
-    protected PageState PageState { get; set; }
-
-    [CascadingParameter]
-    protected Module ModuleState { get; set; }
-
     private string _text = null;
 
     protected override async Task OnInitializedAsync()
     {
         _text = await TextService.GetTextAsync();
+
+        AddModuleMessage("AddModuleMessage Called From Child Component And Displayed In Parent Component", "Success");
     }
 }

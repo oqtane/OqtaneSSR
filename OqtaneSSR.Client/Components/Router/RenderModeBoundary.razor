@@ -1,0 +1,53 @@
+﻿@using OqtaneSSR.Client.Models
+
+<CascadingValue Value="@PageState">
+    <CascadingValue Value="@ModuleState">
+        @if (!string.IsNullOrEmpty(_messageContent))
+        {
+            <div class="alert alert-@(_messageType.ToLower()) alert-dismissible fade show mb-3" role="alert">
+                @((MarkupString)_messageContent)
+                <button type="button" class="btn-close" aria-label="Close" @onclick="DismissModal"></button>
+            </div>
+        }
+        @DynamicComponent
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private string _messageContent;
+    private string _messageType;
+
+    [Parameter]
+    public PageState PageState { get; set; }
+
+    [Parameter]
+    public Module ModuleState { get; set; }
+
+    [Parameter]
+    public string TypeName { get; set; }
+
+    RenderFragment DynamicComponent { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        DynamicComponent = builder =>
+        {
+            builder.OpenComponent(0, Type.GetType(TypeName));
+            builder.AddAttribute(1, "RenderModeBoundary", this);
+            builder.CloseComponent();
+        };
+    }
+
+    public void AddModuleMessage(string messageContent, string messageType)
+    {
+        _messageContent = messageContent;
+        _messageType = messageType;
+        StateHasChanged();
+    }
+
+    private void DismissModal()
+    {
+        _messageContent = "";
+        StateHasChanged();
+    }
+}
