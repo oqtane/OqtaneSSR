@@ -6,7 +6,11 @@
         {
             <div class="alert alert-@(_messageType.ToLower()) alert-dismissible fade show mb-3" role="alert">
                 @((MarkupString)_messageContent)
-                <button type="button" class="btn-close" aria-label="Close" @onclick="DismissModal"></button>
+                <form method="post" @onsubmit="DismissMessage" @formname="@ModuleState.ModuleType">
+                    <AntiforgeryToken />
+                    <button type="submit" class="btn-close" aria-label="Close"></button>
+                </form>
+
             </div>
         }
         @DynamicComponent
@@ -45,11 +49,9 @@
         _messageType = messageType;
         StateHasChanged();
     }
-    
-    // this does not work when using static rendering as the onclick event cannot be handled
-    private void DismissModal()
+
+    private void DismissMessage()
     {
         _messageContent = "";
-        StateHasChanged();
     }
 }
