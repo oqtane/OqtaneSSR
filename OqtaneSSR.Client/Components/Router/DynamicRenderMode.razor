@@ -6,7 +6,7 @@
         {
             <div class="alert alert-@(_messageType.ToLower()) alert-dismissible fade show mb-3" role="alert">
                 @((MarkupString)_messageContent)
-                <form method="post" @onsubmit="DismissMessage" @formname="@ModuleState.ModuleType">
+                <form method="post" @onsubmit="DismissMessage" @formname="@ModuleState.ModuleType" data-enhance>
                     <AntiforgeryToken />
                     <button type="submit" class="btn-close" aria-label="Close"></button>
                 </form>
