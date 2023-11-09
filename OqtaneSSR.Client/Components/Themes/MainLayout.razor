@@ -1,5 +1,6 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Components.Router
+@using OqtaneSSR.Client.Shared
 
 <div class="page">
     <div class="sidebar">
@@ -8,7 +9,7 @@
 
     <main>
         <div class="top-row px-4">
-            <small>(Theme: @this.GetType().FullName)</small>
+            <small>(Theme: @this.GetType().FullName)</small><Login PageState="@PageState" @rendermode="@Utilities.GetRenderMode("InteractiveServer")" />
         </div>
 
         <div class="container">

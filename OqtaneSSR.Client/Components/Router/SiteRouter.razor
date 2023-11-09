@@ -13,10 +13,11 @@
 @DynamicComponent
 
 @code {
+    private string _interactiveRenderMode;
     private List<Module> _modules;
     private string _absoluteUri;
     private bool _navigationInterceptionEnabled;
-    private PageState _pagestate;
+    private PageState _pageState;
 
     [CascadingParameter]
     PageState PageState { get; set; }
@@ -28,6 +29,7 @@
 
     protected override void OnInitialized()
     {
+        _interactiveRenderMode = Configuration.GetSection("InteractiveRenderMode").Get<string>();
         _modules = Configuration.GetSection("Modules").Get<List<Module>>();
 
         _absoluteUri = NavigationManager.Uri;
@@ -74,12 +76,13 @@
 
     private async Task Refresh()
     {
-        _pagestate = new PageState
+        _pageState = new PageState
         {
+            InteractiveRenderMode = _interactiveRenderMode,
             PagePath = new Uri(_absoluteUri).AbsolutePath,
             Modules = _modules
         };
 
-        OnStateChange?.Invoke(_pagestate);
+        OnStateChange?.Invoke(_pageState);
     }
 }

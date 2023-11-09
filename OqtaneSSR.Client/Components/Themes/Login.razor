@@ -1,0 +1,16 @@
+﻿@using OqtaneSSR.Client.Models
+
+<button type="button" class="btn btn-primary ms-2" @onclick="LoginUser">@((_authenticated ? "Logout" : "Login"))</button>
+
+@code {
+    private bool _authenticated = false;
+
+    [Parameter]
+    public PageState PageState { get; set; }
+
+    protected void LoginUser()
+    {
+        _authenticated = !_authenticated;
+        StateHasChanged();
+    }
+}

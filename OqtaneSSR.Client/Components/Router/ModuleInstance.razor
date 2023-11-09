@@ -1,24 +1,17 @@
 @using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Components
+@using OqtaneSSR.Client.Shared
 
 <div style="width: 100%; border-width: 1px; border-style: dashed; border-color: gray;">
 	<div style="text-align: center;"><small>(Module: @ModuleState.ModuleType)</small></div>
-	<div style="text-align: center;"><small>(Render Mode: @ModuleState.RenderMode)</small></div>
+	<div style="text-align: center;"><small>(Render Mode: @((ModuleState.RenderMode == "Static") ? ModuleState.RenderMode : PageState.InteractiveRenderMode))</small></div>
 	<br />
 	
-	@if (ModuleState.RenderMode == "InteractiveServer")
+	@if (ModuleState.RenderMode == "Interactive")
 	{
-		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveServer"></DynamicRenderMode>
+		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="@Utilities.GetRenderMode(PageState.InteractiveRenderMode)"></DynamicRenderMode>
 	}
-	@if (ModuleState.RenderMode == "InteractiveWebAssembly")
-	{
-		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveWebAssembly"></DynamicRenderMode>
-	}
-	@if (ModuleState.RenderMode == "InteractiveAuto")
-	{
-		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState" @rendermode="RenderMode.InteractiveAuto"></DynamicRenderMode>
-	}
-	@if (ModuleState.RenderMode == "Server")
+	else
 	{
 		<DynamicRenderMode TypeName="@ModuleState.ModuleType" ModuleState="@ModuleState" PageState="@PageState"></DynamicRenderMode>
 	}
