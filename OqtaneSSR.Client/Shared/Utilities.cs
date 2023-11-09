@@ -12,9 +12,9 @@ namespace OqtaneSSR.Client.Shared
                 case "InteractiveServer":
                     return RenderMode.InteractiveServer;
                 case "InteractiveWebAssembly":
-                    return RenderMode.InteractiveServer;
+                    return RenderMode.InteractiveWebAssembly;
                 case "InteractiveAuto":
-                    return RenderMode.InteractiveServer;
+                    return RenderMode.InteractiveAuto;
             }
             return null;
         }
