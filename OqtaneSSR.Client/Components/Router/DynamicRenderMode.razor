@@ -6,7 +6,7 @@
         {
             <div class="alert alert-@(_messageType.ToLower()) alert-dismissible fade show mb-3" role="alert">
                 @((MarkupString)_messageContent)
-                <form method="post" @onsubmit="DismissMessage" @formname="@ModuleState.ModuleType" data-enhance>
+                <form method="post" @onsubmit="DismissMessage" @formname="@_formName" data-enhance>
                     <AntiforgeryToken />
                     <button type="submit" class="btn-close" aria-label="Close"></button>
                 </form>
@@ -19,6 +19,7 @@
 @code {
     private string _messageContent;
     private string _messageType;
+    private string _formName;
 
     [Parameter]
     public PageState PageState { get; set; }
@@ -34,6 +35,8 @@
     protected override void OnParametersSet()
     {
         _messageContent = "";
+        _formName = ModuleState.ModuleType; // note that form names need to be unique and you can't use Guid.NewGuid() because the component is re-initialized on submit
+
         DynamicComponent = builder =>
         {
             builder.OpenComponent(0, Type.GetType(TypeName));
