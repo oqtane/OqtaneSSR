@@ -34,7 +34,7 @@
 
     protected override void OnInitialized()
     {
-        SiteState.RemoteIPAddress = Context.Connection.RemoteIpAddress?.ToString(); // scoped service is not passed across render mode boundary
+        SiteState.RemoteIPAddress = Context.Connection.RemoteIpAddress?.ToString();
         //SiteState.AntiForgeryToken = AntiForgeryToken; // how do we retrieve this in a component?
 
         var url = Context.Request.GetEncodedUrl();

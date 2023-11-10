@@ -13,6 +13,8 @@
     protected override void OnInitialized()
     {
         SetPageTitle("Test"); // scoped service is able to cross render mode boundary
+
+        AddModuleMessage("The IP Address Is: " + SiteState.RemoteIPAddress + " (From App Component)", "Success");
     }
 
     private void IncrementCount()

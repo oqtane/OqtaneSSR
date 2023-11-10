@@ -1,4 +1,5 @@
 ﻿@using OqtaneSSR.Client.Models
+@inject SiteState SiteStateService
 
 <CascadingValue Value="@PageState">
     <CascadingValue Value="@ModuleState">
@@ -22,24 +23,27 @@
     private string _formName;
 
     [Parameter]
+    public SiteState SiteState { get; set; }
+
+    [Parameter]
     public PageState PageState { get; set; }
 
     [Parameter]
     public Module ModuleState { get; set; }
 
-    [Parameter]
-    public string TypeName { get; set; }
-
     RenderFragment DynamicComponent { get; set; }
 
     protected override void OnParametersSet()
     {
+        // this is required to marshal the SiteState across the render mode boundary (property values must be transferred - not the object itself)
+        SiteStateService.RemoteIPAddress = SiteState.RemoteIPAddress; 
+
         _messageContent = "";
         _formName = ModuleState.ModuleType; // note that form names need to be unique and you can't use Guid.NewGuid() because the component is re-initialized on submit
 
         DynamicComponent = builder =>
         {
-            builder.OpenComponent(0, Type.GetType(TypeName));
+            builder.OpenComponent(0, Type.GetType(ModuleState.ModuleType));
             builder.AddAttribute(1, "DynamicRenderMode", this);
             builder.CloseComponent();
         };
