@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions;
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using OqtaneSSR.Client.Models
+@inject SiteState SiteState
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,15 +13,15 @@
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="OqtaneSSR.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <HeadOutlet />
+    <Head />
 </head>
 
 <body>
 @*  
-    // specifying a global rendermode (interactive) for the entire app
+    // testing a global interactive rendermode for the entire app
     <Routes @rendermode="@RenderMode.InteractiveServer" />
  *@
-    <Routes />
+    <Body />
     <script src="_framework/blazor.web.js"></script>
 </body>
 
@@ -32,7 +34,9 @@
 
     protected override void OnInitialized()
     {
-        var ip = Context.Connection.RemoteIpAddress?.ToString();
+        SiteState.RemoteIPAddress = Context.Connection.RemoteIpAddress?.ToString(); // scoped service is not passed across render mode boundary
+        //SiteState.AntiForgeryToken = AntiForgeryToken; // how do we retrieve this in a component?
+
         var url = Context.Request.GetEncodedUrl();
         var user = Context.User;
         var cookies = Context.Request.Cookies;

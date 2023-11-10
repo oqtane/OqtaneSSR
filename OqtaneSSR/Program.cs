@@ -3,9 +3,11 @@ using OqtaneSSR.Components;
 using OqtaneSSR.Extensions;
 using Microsoft.AspNetCore.Components;
 using OqtaneSSR.Client.Services;
+using OqtaneSSR.Client.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<SiteState>(); 
 builder.Services.AddScoped<ITextService, OqtaneSSR.Services.TextService>();
 
 // Server Side Blazor doesn't register HttpClient by default

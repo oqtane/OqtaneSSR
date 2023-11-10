@@ -15,9 +15,17 @@ namespace OqtaneSSR.Client.Components.Modules
         [Parameter]
         public DynamicRenderMode DynamicRenderMode { get; set; }
 
+        [Inject]
+        protected SiteState SiteState { get; set; }
+
         public void AddModuleMessage(string message, string type)
         {
 			DynamicRenderMode.AddModuleMessage(message, type);
+        }
+
+        public void SetPageTitle(string title)
+        {
+            SiteState.Properties.PageTitle = title;
         }
     }
 }

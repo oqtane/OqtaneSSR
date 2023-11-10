@@ -10,6 +10,11 @@
 @code {
     private int currentCount = 0;
 
+    protected override void OnInitialized()
+    {
+        SetPageTitle("Test"); // scoped service is able to cross render mode boundary
+    }
+
     private void IncrementCount()
     {
         currentCount++;

@@ -1,0 +1,50 @@
+@using System.ComponentModel
+@using OqtaneSSR.Client.Models
+@inject SiteState SiteState
+
+@if (!string.IsNullOrEmpty(_title))
+{
+    @((MarkupString)_title)
+}
+@if (!string.IsNullOrEmpty(_content))
+{
+    @((MarkupString)_content)
+}
+
+@code {
+    private string _title = "";
+    private string _content = "";
+
+    protected override void OnInitialized()
+    {
+        ((INotifyPropertyChanged)SiteState.Properties).PropertyChanged += PropertyChanged;
+    }
+
+    private void PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case "PageTitle":
+                var title = "\n<title>" + SiteState.Properties.PageTitle + "</title>";
+                if (title != _title)
+                {
+                    _title = title;
+                    StateHasChanged();
+                }
+                break;
+            case "HeadContent":
+                var content = SiteState.Properties.HeadContent + "\n";
+                if (content != _content)
+                {
+                    _content = content;
+                    StateHasChanged();
+                }
+                break;
+        }
+    }
+
+    public void Dispose()
+    {
+        ((INotifyPropertyChanged)SiteState.Properties).PropertyChanged -= PropertyChanged;
+    }
+}
