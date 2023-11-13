@@ -30,7 +30,7 @@
 
     protected override void OnInitialized()
     {
-        _interactiveRenderMode = Configuration.GetSection("InteractiveRenderMode").Get<string>();
+        _interactiveRenderMode = Configuration["InteractiveRenderMode"];
         _modules = Configuration.GetSection("Modules").Get<List<Module>>();
 
         _absoluteUri = NavigationManager.Uri;

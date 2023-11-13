@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
 @using OqtaneSSR.Client.Models
+@using OqtaneSSR.Client.Shared
+
 @inject SiteState SiteState
+@inject IConfiguration Configuration
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,23 +20,32 @@
 </head>
 
 <body>
-@*  
-    // testing a global interactive rendermode for the entire app
-    <Routes @rendermode="@RenderMode.InteractiveServer" />
- *@
-    <Body />
+    @if (_defaultRenderMode == "Static")
+    {
+        <Body />
+    }
+    else
+    {
+        <Body @rendermode="@Utilities.GetRenderMode(_interactiveRenderMode)" />
+    }
     <script src="_framework/blazor.web.js"></script>
 </body>
 
 </html>
 
 @code {
+    private string _interactiveRenderMode;
+    private string _defaultRenderMode;
+
     //  this CascadingParameter is required in order to access HttpContent
     [CascadingParameter] 
     HttpContext Context { get; set; }
 
     protected override void OnInitialized()
     {
+        _defaultRenderMode = Configuration["DefaultRenderMode"];
+        _interactiveRenderMode = Configuration["InteractiveRenderMode"];
+
         SiteState.RemoteIPAddress = Context.Connection.RemoteIpAddress?.ToString();
         //SiteState.AntiForgeryToken = AntiForgeryToken; // how do we retrieve this in a component?
 
