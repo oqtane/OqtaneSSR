@@ -2,9 +2,10 @@
 
 This is a POC for the new Blazor SSR capabilities in .NET 8. This project was originally created using the Blazor Web template (with WebAssembly chosen for Interactivity) on RC2. It has been modified to emulate the Oqtane Framework's (https://www.oqtane.org) dynamic approach to routing, component rendering, etc... which means that many of the default behaviors of the default Blazor Web template have been customized or overridden.
 
-The appsettings.json (OqtaneSSR/appsettings.json) contains an InteractiveRenderMode property where you can set the interactive render mode for the application (ie. InteractiveServer, InteractiveWebAssembly, InteractiveAuto) and a Modules property where you can define the pages and modules which should be rendered in your site. The initial configuration matches the standard appearance for the Blazor template, however you can experiment with the project by modifying the configuration (ie. adding/removing modules, changing module properties, etc...).
+The appsettings.json (OqtaneSSR/appsettings.json) contains a DefaultRenderMode where you can specify the detault render mode for the entire application (Static or Interactive), an InteractiveRenderMode property where you can set the render mode for interactive modules (ie. InteractiveServer, InteractiveWebAssembly, InteractiveAuto) and a Modules property where you can define the pages and modules which should be rendered in your site. The initial configuration matches the standard appearance and behavior for the Blazor Web template, however you can experiment with the project by modifying the configuration (ie. adding/removing modules, changing module properties, etc...).
 
 ```
+  "DefaultRenderMode": "Static",
   "InteractiveRenderMode": "InteractiveServer",
   "Modules": [
     {
@@ -40,7 +41,7 @@ The appsettings.json (OqtaneSSR/appsettings.json) contains an InteractiveRenderM
   ]
 ```
 
-![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/9b24568b-4d64-40d3-98fa-122dfb37c3b6)
+![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/770b64c8-4852-4e16-be7f-0ebb168ce9bb)
 
 Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes - Default, Footer, and Right. There is 1 Container - Container. There are 3 Modules - Home (which loads content from an ITextService), Counter (which demonstrates interactivity), and Weather (which demonstrates StreamRendering). There are 2 RenderModes - Static and Interactive.
 
