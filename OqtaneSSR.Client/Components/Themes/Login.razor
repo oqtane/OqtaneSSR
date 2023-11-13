@@ -1,4 +1,5 @@
 ﻿@using OqtaneSSR.Client.Models
+@attribute [RenderModeInteractiveServer]
 
 <button type="button" class="btn btn-primary ms-2" @onclick="LoginUser">@((_authenticated ? "Logout" : "Login"))</button>
 
