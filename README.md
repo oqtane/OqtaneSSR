@@ -41,7 +41,7 @@ The appsettings.json (OqtaneSSR/appsettings.json) contains a DefaultRenderMode w
   ]
 ```
 
-![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/9b24568b-4d64-40d3-98fa-122dfb37c3b6)
+![image](https://github.com/oqtane/OqtaneSSR/assets/4840590/770b64c8-4852-4e16-be7f-0ebb168ce9bb)
 
 Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes - Default, Footer, and Right. There is 1 Container - Container. There are 3 Modules - Home (which loads content from an ITextService), Counter (which demonstrates interactivity), and Weather (which demonstrates StreamRendering). There are 2 RenderModes - Static and Interactive.
 
