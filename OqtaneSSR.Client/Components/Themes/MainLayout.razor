@@ -1,7 +1,6 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Components.Router
 @using OqtaneSSR.Client.Shared
-@inject IConfiguration Configuration
 
 <div class="page">
     <div class="sidebar">
@@ -10,7 +9,7 @@
 
     <main>
         <div class="top-row px-4">
-            <small>(Default Render Mode: @_defaultRenderMode) (Theme: @this.GetType().FullName)</small><Login PageState="@PageState" />
+            <small>(Default Render Mode: @PageState.InteractiveRenderMode) (Theme: @this.GetType().FullName)</small><Login PageState="@PageState" @rendermode="@Utilities.GetRenderMode(PageState.InteractiveRenderMode)" />
         </div>
 
         <div class="container">
@@ -46,13 +45,6 @@
 </div>
 
 @code {
-    private string _defaultRenderMode;
-
     [CascadingParameter]
     protected PageState PageState { get; set; }
-
-    protected override void OnInitialized()
-    {
-        _defaultRenderMode = Configuration["DefaultRenderMode"];
-    }
 }

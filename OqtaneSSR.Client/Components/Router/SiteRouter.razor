@@ -19,7 +19,7 @@
     private string _absoluteUri;
     private bool _navigationInterceptionEnabled;
     private PageState _pageState;
-    
+
     [CascadingParameter]
     PageState PageState { get; set; }
 
@@ -77,6 +77,8 @@
 
     private async Task Refresh()
     {
+        await Task.Delay(1); // get rid of compiler warning
+
         _pageState = new PageState
         {
             InteractiveRenderMode = _interactiveRenderMode,
