@@ -50,7 +50,6 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - Does not use any @page components (all @page components migrated to Client project and converted into standard components)
 - Uses a fallback route mapped to the App root component
 - Uses a custom SiteRouter rather than the default Blazor router (which simply maps the current Url path to some Module metadata)
-- The SiteRouter uses Server rendering
 - The SiteRouter has a variety of child components to simulate the nested behavior of components in Oqtane (ie. themes -> panes -> containers -> modules)
 - Uses DynamicComponent and RenderFragment to construct the UI dynamically
 - Accesses HttpContext in App.razor
@@ -59,6 +58,7 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 - Demonstrates how to deal with [CascadingParameter] transitions across RenderMode boundaries
 - Demonstrates how to deal with Scoped Service transitions across RenderMode boundaries
 - demonstrates how to use a standard HTML Form and data-enhance attribute to create interactivity within a static component (see DynamicRenderMode)
+- NavMenu constructed dynamically from PagePaths in Modules collection
 
 # Known Problems
 
