@@ -14,7 +14,7 @@
     {
         SetPageTitle("Test"); // scoped service is able to cross render mode boundary
 
-        AddModuleMessage("The IP Address Is: " + SiteState.RemoteIPAddress + " (From App Component)", "Success");
+        AddModuleMessage("The IP Address Is: " + SiteState.RemoteIPAddress + " (from HttpContext in App.razor)", "Success");
     }
 
     private void IncrementCount()

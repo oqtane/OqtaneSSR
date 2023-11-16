@@ -33,6 +33,14 @@
         _interactiveRenderMode = Configuration["InteractiveRenderMode"];
         _modules = Configuration.GetSection("Modules").Get<List<Module>>();
 
+        // create simulated unique ids
+        int id = -1;
+        foreach (Module module in _modules)
+        {
+            id++;
+            module.Id = id;
+        }
+
         _absoluteUri = NavigationManager.Uri;
         NavigationManager.LocationChanged += LocationChanged;
 
@@ -77,7 +85,7 @@
 
     private async Task Refresh()
     {
-        await Task.Delay(1); // get rid of compiler warning
+        await Task.Delay(1); // get rid of async compiler warning
 
         _pageState = new PageState
         {

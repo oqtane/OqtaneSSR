@@ -39,7 +39,7 @@
         SiteStateService.RemoteIPAddress = SiteState.RemoteIPAddress; 
 
         _messageContent = "";
-        _formName = ModuleState.ModuleType; // note that form names need to be unique and you can't use Guid.NewGuid() because the component is re-initialized on submit
+        _formName = $"ModuleMessageForm{ModuleState.Id}"; // note that form names need to be unique and you can't use Guid.NewGuid() because the component is re-initialized on submit
 
         DynamicComponent = builder =>
         {

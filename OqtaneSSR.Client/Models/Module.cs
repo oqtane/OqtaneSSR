@@ -10,5 +10,6 @@ namespace OqtaneSSR.Client.Models
         public string ModuleTitle { get; set; }
         public string ModuleType { get; set; }
         public string RenderMode { get; set; }
+        public int Id { get; set; }
     }
 }
