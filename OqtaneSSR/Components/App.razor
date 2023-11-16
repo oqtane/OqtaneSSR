@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
 @using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Shared
+@using OqtaneSSR.Client.Components.Root
 
 @inject SiteState SiteState
 @inject IConfiguration Configuration
@@ -16,7 +17,14 @@
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="OqtaneSSR.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <Head />
+    @if (_defaultRenderMode == "Static")
+    {
+        <Head />
+    }
+    else
+    {
+        <Head @rendermode="@Utilities.GetRenderMode(_interactiveRenderMode)" />
+    }
 </head>
 
 <body>
