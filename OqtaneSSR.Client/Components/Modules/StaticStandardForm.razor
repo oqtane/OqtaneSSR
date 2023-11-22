@@ -1,0 +1,39 @@
+﻿@using OqtaneSSR.Client.Models
+@inherits ModuleBase
+
+<div>Form Name: @_formname</div>
+
+<form method="post" @onsubmit="Submit" @formname="@_formname">
+    <AntiforgeryToken />
+    <label for="firstname">First name:</label><br>
+    <input type="text" id="firstname" name="firstname" class="form-control" @bind="@_firstname"><br>
+    <label for="lastname">Last name:</label><br>
+    <input type="text" id="lastname" name="lastname" class="form-control" @bind="@_lastname"><br><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (!string.IsNullOrEmpty(_message))
+{
+    @((MarkupString)_message)
+    
+}
+
+@code {
+    [SupplyParameterFromForm] public string FirstName { get => ""; set => _firstname = value; }
+    [SupplyParameterFromForm] public string LastName { get => ""; set => _lastname = value; }
+
+    private string _formname;
+    private string _firstname = "First";
+    private string _lastname = "Last";
+    private string _message;
+
+    protected override void OnParametersSet()
+    {
+        _formname = $"{this.ToString()}_Form{ModuleState.Id}";
+    }
+
+    private void Submit()
+    {
+        _message = $"<br /><p>Form Submitted...<br />First Name: {_firstname}<br />Last Name: {_lastname}</p>";
+    }
+}
