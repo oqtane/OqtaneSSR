@@ -13,6 +13,7 @@
         @foreach (var page in PageState.Modules.GroupBy(item => item.PagePath).Select(group => group.First()))
         {
             <div class="nav-item px-3">
+                @*<a href="" data-enhance-nav="false"> disables enhanced navigation *@
                 <NavLink class="nav-link" href="@(page.PagePath.Replace("/", ""))" Match="NavLinkMatch.All">
                     <span class="bi bi-house-door-fill" aria-hidden="true"></span> @(page.PageName)
                 </NavLink>

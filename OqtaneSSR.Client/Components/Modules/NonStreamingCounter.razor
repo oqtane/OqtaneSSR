@@ -1,0 +1,22 @@
+﻿@using OqtaneSSR.Client.Models
+@inherits ModuleBase
+
+<p>This component demonstrates a counter using standard rendering</p>
+
+<p>
+    This count is: @count
+</p>
+
+@code {
+    int count = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            await Task.Delay(1000);
+            count++;
+            StateHasChanged(); // only needed to show intermediate states
+        }
+    }
+}

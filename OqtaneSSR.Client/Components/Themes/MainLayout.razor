@@ -9,7 +9,11 @@
 
     <main>
         <div class="top-row px-4">
-            <small>(Default Render Mode: @PageState.InteractiveRenderMode) (Theme: @this.GetType().FullName)</small><Login PageState="@PageState" @rendermode="@Utilities.GetRenderMode(PageState.InteractiveRenderMode)" />
+            <small>(Default Render Mode: @PageState.InteractiveRenderMode) (Theme: @this.GetType().FullName)</small>&nbsp;&nbsp;
+            <form data-permanent>
+                Search: <input type="text" placeholder="data-permanent" />
+            </form>
+            <Login PageState="@PageState" @rendermode="@Utilities.GetRenderMode(PageState.InteractiveRenderMode)" />
         </div>
 
         <div class="container">
