@@ -1,6 +1,8 @@
 # OqtaneSSR
 
-This is a POC for the new Blazor Server-Side Rendering (SSR) capabilities in .NET 8. This project was originally created using the standard Blazor Web template (with WebAssembly chosen for Interactivity). It has been modified to emulate the Oqtane Framework's (https://www.oqtane.org) dynamic approach to routing, component rendering, etc... which means that many of the default behaviors of the default Blazor Web template have been customized or overridden.
+This is a POC for the new Blazor Server-Side Rendering (SSR) capabilities in .NET 8 - demonstrating some of the dynamic capabilities of the Oqtane CMS and Application Framework (https://www.oqtane.org) - which was developed on earlier versions of interactive Blazor. 
+
+This POC project was originally created using the standard Blazor Web template (with WebAssembly chosen for Interactivity). It has been modified to emulate the dynamic approach to routing, component rendering, etc... which means that many of the default behaviors of the default Blazor Web template have been customized or overridden.
 
 The appsettings.json (OqtaneSSR/appsettings.json) contains a DefaultRenderMode where you can specify the detault render mode for the entire application (Static or Interactive), an InteractiveRenderMode property where you can set the render mode for interactive modules (ie. InteractiveServer, InteractiveWebAssembly, InteractiveAuto) and a Modules property where you can define the pages and modules which should be rendered in your site. The initial configuration matches the standard appearance and behavior for the Blazor Web template, however you can experiment with the project by modifying the configuration (ie. adding/removing modules, changing module properties, etc...).
 
