@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OqtaneSSR.Client.Services;
+using System.Diagnostics;
 
 namespace OqtaneSSR.Controllers
 {
@@ -16,7 +17,10 @@ namespace OqtaneSSR.Controllers
         [HttpGet]
         public async Task<string> Get()
         {
-            return await _TextService.GetTextAsync();
+            Debug.WriteLine("TextController Started");
+            var result = await _TextService.GetTextAsync();
+            Debug.WriteLine("TextController Completed");
+            return result;
         }
     }
 }

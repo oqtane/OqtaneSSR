@@ -4,6 +4,7 @@
 @using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Services
 @using Microsoft.Extensions.Configuration
+@using System.Diagnostics
 
 @inject IConfiguration Configuration
 @inject NavigationManager NavigationManager
@@ -14,6 +15,10 @@
 @implements IHandleAfterRender
 
 @DynamicComponent
+
+@{
+    Debug.WriteLine("SiteRouter - Render Component");
+}
 
 @code {
     private string _interactiveRenderMode;
@@ -32,6 +37,7 @@
 
     protected override void OnInitialized()
     {
+        Debug.WriteLine("SiteRouter - OnInitializedAsync Started");
         _interactiveRenderMode = Configuration["InteractiveRenderMode"];
         _modules = Configuration.GetSection("Modules").Get<List<Module>>();
 
@@ -54,19 +60,24 @@
                 builder.CloseComponent();
             }
         };        
+        Debug.WriteLine("SiteRouter - OnInitializedAsync Started");
     }
 
     public void Dispose()
     {
+        Debug.WriteLine("SiteRouter - Dispose Started");
         NavigationManager.LocationChanged -= LocationChanged;
+        Debug.WriteLine("SiteRouter - Dispose Completed");
     }
 
     protected override async Task OnParametersSetAsync()
     {
+        Debug.WriteLine("SiteRouter - OnParametersSetAsync Started");
         if (PageState == null)
         {
             await Refresh();
         }
+        Debug.WriteLine("SiteRouter - OnParametersSetAsync Completed");
     }
 
     private async void LocationChanged(object sender, LocationChangedEventArgs args)
@@ -77,17 +88,21 @@
 
     Task IHandleAfterRender.OnAfterRenderAsync()
     {
+        Debug.WriteLine("SiteRouter - OnAfterRenderAsync Started");
         if (!_navigationInterceptionEnabled)
         {
             _navigationInterceptionEnabled = true;
+            Debug.WriteLine("SiteRouter - OnAfterRenderAsync Completed");
             return NavigationInterception.EnableNavigationInterceptionAsync();
         }
+        Debug.WriteLine("SiteRouter - OnAfterRenderAsync Completed");
         return Task.CompletedTask;
     }
 
     private async Task Refresh()
     {
-        var x = await HttpClientService.GetTextAsync(); // adding this service call prevents downstream components from rendering
+        Debug.WriteLine("SiteRouter - Refresh Started");
+        var x = await HttpClientService.GetTextAsync(); // adding this service call prevents downstream components from rendering in static render mode
 
         _pageState = new PageState
         {
@@ -97,5 +112,6 @@
         };
 
         OnStateChange?.Invoke(_pageState);
+        Debug.WriteLine("SiteRouter - Refresh Completed");
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace OqtaneSSR.Client.Services
+﻿using System.Diagnostics;
+
+namespace OqtaneSSR.Client.Services
 {
     public class HttpClientService : IHttpClientService
     {
@@ -11,7 +13,10 @@
 
         public async Task<string> GetTextAsync()
         {
-            return await _http.GetStringAsync("api/Text/");
+            Debug.WriteLine("HttpClientService Call Started");
+            var result = await _http.GetStringAsync("api/Text/");
+            Debug.WriteLine("HttpClientService Call Completed");
+            return result;
         }
     }
 }

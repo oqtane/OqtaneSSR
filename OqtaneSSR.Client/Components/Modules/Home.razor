@@ -1,5 +1,6 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Services
+@using System.Diagnostics
 @inherits ModuleBase
 @inject ITextService TextService
 @inject IHttpClientService HttpClientService
@@ -11,14 +12,38 @@
     <strong>@_text</strong>
 }
 
+@{
+    Debug.WriteLine("Home - Render Component");
+}
+
 @code {
     private string _text = null;
 
     protected override async Task OnInitializedAsync()
     {
+        Debug.WriteLine("Home - OnInitializedAsync Started");
         //_text = await TextService.GetTextAsync();
         _text = await HttpClientService.GetTextAsync();
 
         //AddModuleMessage("AddModuleMessage Called From Child Component And Displayed In Parent Component", "Success");
+        Debug.WriteLine("Home - OnInitializedAsync Completed");
+    }
+
+    public async override Task SetParametersAsync(ParameterView parameters)
+    {
+        Debug.WriteLine("Home - SetParametersAsync Started");
+        await base.SetParametersAsync(parameters);
+        Debug.WriteLine("Home - SetParametersAsync Completed");
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            Debug.WriteLine("Home - First OnAfterRenderAsync");
+
+        else
+            Debug.WriteLine("Home - Subsequent OnAfterRenderAsync");
+
+        return Task.CompletedTask;
     }
 }
