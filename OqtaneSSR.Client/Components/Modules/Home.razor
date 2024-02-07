@@ -2,6 +2,7 @@
 @using OqtaneSSR.Client.Services
 @inherits ModuleBase
 @inject ITextService TextService
+@inject IHttpClientService HttpClientService
 
 <p>This component demonstrates retrieving data using the ITextService</p>
 
@@ -15,8 +16,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _text = await TextService.GetTextAsync();
+        //_text = await TextService.GetTextAsync();
+        _text = await HttpClientService.GetTextAsync();
 
-        AddModuleMessage("AddModuleMessage Called From Child Component And Displayed In Parent Component", "Success");
+        //AddModuleMessage("AddModuleMessage Called From Child Component And Displayed In Parent Component", "Success");
     }
 }

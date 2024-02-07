@@ -9,5 +9,6 @@ builder.Services.AddSingleton(httpClient);
 
 builder.Services.AddScoped<SiteState>();
 builder.Services.AddScoped<ITextService, TextService>();
+builder.Services.AddScoped<IHttpClientService, HttpClientService>();
 
 await builder.Build().RunAsync();

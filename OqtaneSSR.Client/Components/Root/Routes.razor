@@ -1,0 +1,34 @@
+﻿@using OqtaneSSR.Client.Models
+@using OqtaneSSR.Client.Components.Router
+
+<CascadingValue Value="@PageState">
+    <SiteRouter OnStateChange="@ChangeState" />
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public string AntiForgeryToken { get; set; }
+
+    [Parameter]
+    public string RenderMode { get; set; }
+
+    [Parameter]
+    public string Runtime { get; set; }
+
+    [Parameter]
+    public int VisitorId { get; set; }
+
+    [Parameter]
+    public string RemoteIPAddress { get; set; }
+
+    [Parameter]
+    public string AuthorizationToken { get; set; }
+
+    private PageState PageState { get; set; }
+
+    private void ChangeState(PageState pageState)
+    {
+        PageState = pageState;
+        StateHasChanged();
+    }
+}

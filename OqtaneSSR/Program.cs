@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<SiteState>(); 
 builder.Services.AddScoped<ITextService, OqtaneSSR.Services.TextService>();
+builder.Services.AddScoped<IHttpClientService, HttpClientService>();
 
 // Server Side Blazor doesn't register HttpClient by default
 if (!builder.Services.Any(x => x.ServiceType == typeof(HttpClient)))
@@ -16,11 +17,16 @@ if (!builder.Services.Any(x => x.ServiceType == typeof(HttpClient)))
     // Setup HttpClient for server side in a client side compatible fashion
     builder.Services.AddScoped<HttpClient>(s =>
     {
-        // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
-        var uriHelper = s.GetRequiredService<NavigationManager>();
+        // Creating the NavigationManager needs to wait until the JS Runtime is initialized, so defer it.
+        //var navigationManager = s.GetRequiredService<NavigationManager>();
+        //return new HttpClient
+        //{
+        //    BaseAddress = new Uri(navigationManager.BaseUri)
+        //};
+
         return new HttpClient
         {
-            BaseAddress = new Uri(uriHelper.BaseUri)
+            BaseAddress = new Uri("https://localhost:7297/")
         };
     });
 }

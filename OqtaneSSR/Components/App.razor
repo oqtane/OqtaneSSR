@@ -30,11 +30,11 @@
 <body>
     @if (_defaultRenderMode == "Static")
     {
-        <Body />
+        <Routes />
     }
     else
     {
-        <Body @rendermode="@Utilities.GetRenderMode(_interactiveRenderMode)" />
+        <Routes AntiForgeryToken="123" RenderMode="Interactive" Runtime="Server" VisitorId="1" RemoteIPAddress="127.0.0.1" AuthorizationToken="123" @rendermode="@Utilities.GetRenderMode(_interactiveRenderMode)" />
     }
     <script src="_framework/blazor.web.js"></script>
 </body>

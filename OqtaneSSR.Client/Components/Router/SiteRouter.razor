@@ -2,12 +2,14 @@
 @using System.Net
 @using OqtaneSSR.Client.Components
 @using OqtaneSSR.Client.Models
+@using OqtaneSSR.Client.Services
 @using Microsoft.Extensions.Configuration
 
 @inject IConfiguration Configuration
 @inject NavigationManager NavigationManager
 @inject INavigationInterception NavigationInterception
 @inject IJSRuntime JSRuntime
+@inject IHttpClientService HttpClientService
 
 @implements IHandleAfterRender
 
@@ -85,7 +87,7 @@
 
     private async Task Refresh()
     {
-        await Task.Delay(1); // get rid of async compiler warning
+        var x = await HttpClientService.GetTextAsync(); // adding this service call prevents downstream components from rendering
 
         _pageState = new PageState
         {
