@@ -18,15 +18,10 @@ if (!builder.Services.Any(x => x.ServiceType == typeof(HttpClient)))
     builder.Services.AddScoped<HttpClient>(s =>
     {
         // Creating the NavigationManager needs to wait until the JS Runtime is initialized, so defer it.
-        //var navigationManager = s.GetRequiredService<NavigationManager>();
-        //return new HttpClient
-        //{
-        //    BaseAddress = new Uri(navigationManager.BaseUri)
-        //};
-
+        var navigationManager = s.GetRequiredService<NavigationManager>();
         return new HttpClient
         {
-            BaseAddress = new Uri("https://localhost:7297/")
+            BaseAddress = new Uri(navigationManager.BaseUri)
         };
     });
 }
