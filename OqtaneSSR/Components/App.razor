@@ -42,7 +42,7 @@
 </html>
 
 @code {
-    private string _defaultRenderMode;
+    private string _defaultRenderMode = "Static";
     private string _interactiveRenderMode;
 
     //  this CascadingParameter is required in order to access HttpContent
@@ -55,7 +55,6 @@
         _interactiveRenderMode = Configuration["InteractiveRenderMode"];
 
         SiteState.RemoteIPAddress = Context.Connection.RemoteIpAddress?.ToString();
-        //SiteState.AntiForgeryToken = AntiForgeryToken; // how do we retrieve this in a component?
 
         var url = Context.Request.GetEncodedUrl();
         var user = Context.User;

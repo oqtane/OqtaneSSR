@@ -9,7 +9,7 @@
     <input type="text" id="firstname" name="firstname" class="form-control" @bind="@_firstname"><br>
     <label for="lastname">Last name:</label><br>
     <input type="text" id="lastname" name="lastname" class="form-control" @bind="@_lastname"><br><br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" name="Action" value="Test">Submit</button>
 </form>
 
 @if (!string.IsNullOrEmpty(_message))
@@ -21,6 +21,7 @@
 @code {
     [SupplyParameterFromForm] public string FirstName { get => ""; set => _firstname = value; }
     [SupplyParameterFromForm] public string LastName { get => ""; set => _lastname = value; }
+    [SupplyParameterFromForm] public string Action { get; set; }
 
     private string _formname;
     private string _firstname = "First";
@@ -34,6 +35,9 @@
 
     private void Submit()
     {
-        _message = $"<br /><p>Form Submitted...<br />First Name: {_firstname}<br />Last Name: {_lastname}</p>";
+        _message = $"<br /><p>";
+        _message += $"Form Submitted...<br />First Name: {_firstname}<br />Last Name: {_lastname}<br />";
+        _message += "Action: " + ((Action != null) ? Action : "NULL");
+        _message += "</p>";
     }
 }
