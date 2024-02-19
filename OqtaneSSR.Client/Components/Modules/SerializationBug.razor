@@ -1,0 +1,8 @@
+﻿@using OqtaneSSR.Client.Models
+@inherits ModuleBase
+
+<SerializationInteractiveComponent MissingConstructor="@_missingConstructor" @rendermode="InteractiveServer" />
+
+@code {
+    private MissingConstructor _missingConstructor = new MissingConstructor("https://www.microsoft.com/");
+}

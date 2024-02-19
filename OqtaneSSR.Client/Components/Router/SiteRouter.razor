@@ -21,6 +21,7 @@
 }
 
 @code {
+    private string _defaultRenderMode;
     private string _interactiveRenderMode;
     private List<Module> _modules;
     private string _absoluteUri;
@@ -38,6 +39,7 @@
     protected override void OnInitialized()
     {
         Debug.WriteLine("SiteRouter - OnInitializedAsync Started");
+        _defaultRenderMode = Configuration["DefaultRenderMode"];
         _interactiveRenderMode = Configuration["InteractiveRenderMode"];
         _modules = Configuration.GetSection("Modules").Get<List<Module>>();
 
@@ -106,6 +108,7 @@
 
         _pageState = new PageState
         {
+            DefaultRenderMode = _defaultRenderMode,
             InteractiveRenderMode = _interactiveRenderMode,
             PagePath = new Uri(_absoluteUri).AbsolutePath,
             Modules = _modules
