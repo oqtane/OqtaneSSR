@@ -1,7 +1,7 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Components.Router
 @inject SiteState SiteState
-@attribute [StreamRendering]
+@* @attribute [StreamRendering] *@
 
 <CascadingValue Value="@PageState">
     <SiteRouter OnStateChange="@ChangeState" />
