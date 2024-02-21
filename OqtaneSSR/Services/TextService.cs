@@ -6,7 +6,7 @@ namespace OqtaneSSR.Services
     {
         public async Task<string> GetTextAsync()
         {
-            return await Task.FromResult("Hello World!!");
+            return await Task.FromResult("Hello StreamRendering!!");
         }
     }
 }

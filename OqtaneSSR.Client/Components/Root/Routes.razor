@@ -1,7 +1,7 @@
 ﻿@using OqtaneSSR.Client.Models
 @using OqtaneSSR.Client.Components.Router
-@attribute [StreamRendering] // addition of StreamRendering resolves rendering issue after HttpClient calls
-
+@inject SiteState SiteState
+@attribute [StreamRendering]
 
 <CascadingValue Value="@PageState">
     <SiteRouter OnStateChange="@ChangeState" />
