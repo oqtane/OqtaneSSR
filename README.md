@@ -70,8 +70,5 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 
 - StreamRendering is required in order for rendering to work properly. This issue has been reported to Microsoft and is still open - https://github.com/dotnet/aspnetcore/issues/54157
 
-# Next Steps
-
-This project is a work in progress. The goal is to simulate as many core concepts of Oqtane as possible to evaluate the challenges or gaps which may exist in Blazor SSR for supporting a modular application framework like Oqtane.
 
 
