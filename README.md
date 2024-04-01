@@ -1,3 +1,7 @@
+# Please Note
+
+The concepts demonstrated in this POC have been implemented in the Oqtane Framework and were released as part of version 5.1 (March 27, 2024). There is not expected to be any further enhancements to this POC, however it will remain accessible for educational purposes to the .NET community.
+
 # OqtaneSSR
 
 This is a POC for the new Blazor Server-Side Rendering (SSR) capabilities in .NET 8 - demonstrating some of the dynamic capabilities of the Oqtane CMS and Application Framework (https://www.oqtane.org) - which was developed on earlier versions of interactive Blazor. 
