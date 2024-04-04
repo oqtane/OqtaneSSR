@@ -1,3 +1,7 @@
+# Please Note
+
+The concepts demonstrated in this POC have been implemented in the Oqtane Framework and were released as part of version 5.1 (March 27, 2024). There is not expected to be any further enhancements to this POC, however it will remain accessible for educational purposes to the .NET community.
+
 # OqtaneSSR
 
 This is a POC for the new Blazor Server-Side Rendering (SSR) capabilities in .NET 8 - demonstrating some of the dynamic capabilities of the Oqtane CMS and Application Framework (https://www.oqtane.org) - which was developed on earlier versions of interactive Blazor. 
@@ -64,10 +68,7 @@ Currently the project only has 1 theme - MainLayout. The Theme supports 3 Panes 
 
 # Known Problems
 
-- workarounds were found for all prior issues
+- StreamRendering is required in order for rendering to work properly. This issue has been reported to Microsoft and is still open - https://github.com/dotnet/aspnetcore/issues/54157
 
-# Next Steps
-
-This project is a work in progress. The goal is to simulate as many core concepts of Oqtane as possible to evaluate the challenges or gaps which may exist in Blazor SSR for supporting a modular application framework like Oqtane.
 
 
