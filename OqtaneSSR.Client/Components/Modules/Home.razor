@@ -7,10 +7,14 @@
 
 <p>This component demonstrates retrieving data using the ITextService</p>
 
+This is the content: &gt;&gt;
 @if (_text != null)
 {
     <strong>@_text</strong>
 }
+&lt;&lt;
+<br /><br />
+(if you uncomment the [StreamRendering] attribute in Routes.razor it will display content properly)
 
 @{
     Debug.WriteLine("Home - Render Component");
