@@ -104,7 +104,8 @@
     private async Task Refresh()
     {
         Debug.WriteLine("SiteRouter - Refresh Started");
-        var x = await HttpClientService.GetTextAsync(); // adding this service call prevents downstream components from rendering in static render mode
+        // including the following HttpClient service call prevents downstream components from rendering properly in static render mode
+        var x = await HttpClientService.GetTextAsync();
 
         _pageState = new PageState
         {
